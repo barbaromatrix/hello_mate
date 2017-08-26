@@ -17,6 +17,9 @@ class CreateFotoImoveisTable extends Migration
             $table->increments('id');
             $table->string('nm_foto');
             $table->string('nm_fisico_foto');
+            $table->boolean('ic_imagem_principal');
+            $table->integer('imovel_id')->unsigned();
+                $table->foreign('imovel_id')->references('id')->on('imoveis');
             $table->timestamps();
         });
     }
@@ -28,6 +31,13 @@ class CreateFotoImoveisTable extends Migration
      */
     public function down()
     {
+        Schema::table('foto_imoveis', function (Blueprint $table) {
+            $table->dropForeign(['imovel_id']);
+        });
+        
         Schema::dropIfExists('foto_imoveis');
     }
 }
+
+
+// 2017_08_01_025918_create_foto_imoveis_table

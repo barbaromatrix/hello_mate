@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsuarioCategoriasTable extends Migration
+class CreatePreferenciaUsuariostable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateUsuarioCategoriasTable extends Migration
      */
     public function up()
     {
-        Schema::create('usuario_categorias', function (Blueprint $table) {
+        Schema::create('preferencia_usuarios', function (Blueprint $table) {
             $table->increments('id');
             
             $table->integer('usuario_id')->unsigned();
                 $table->foreign('usuario_id')->references('id')->on('usuarios');
                 
-            $table->integer('categoria_id')->unsigned();
-                $table->foreign('categoria_id')->references('id')->on('categorias');
+            $table->integer('preferencia_id')->unsigned();
+                $table->foreign('preferencia_id')->references('id')->on('preferencias');
             
             $table->timestamps();
         });
@@ -33,11 +33,11 @@ class CreateUsuarioCategoriasTable extends Migration
      */
     public function down()
     {
-        Schema::table('usuario_categorias', function (Blueprint $table) {
+        Schema::table('preferencia_usuarios', function (Blueprint $table) {
             $table->dropForeign(['usuario_id']);
-            $table->dropForeign(['categoria_id']);
+            $table->dropForeign(['preferencia_id']);
         });
         
-        Schema::dropIfExists('usuario_categorias');
+        Schema::dropIfExists('preferencia_usuarios');
     }
 }
