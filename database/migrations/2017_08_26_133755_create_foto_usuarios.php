@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFotoUsuario extends Migration
+class CreateFotoUsuarios extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateFotoUsuario extends Migration
      */
     public function up()
     {
-        Schema::create('foto_usuario', function (Blueprint $table) {
+        Schema::create('foto_usuarios', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nm_foto');
             $table->string('nm_fisico_foto');
@@ -31,9 +31,9 @@ class CreateFotoUsuario extends Migration
      */
     public function down()
     {
-        Schema::table('foto_usuario', function (Blueprint $table) {
+        Schema::table('foto_usuarios', function (Blueprint $table) {
             $table->dropForeign(['usuario_id']);
         });
-        Schema::dropIfExists('foto_usuario');
+        Schema::dropIfExists('foto_usuarios');
     }
 }
